@@ -12,7 +12,7 @@ October, 2017
 import requests
 import json
 from tabulate import *
-from apic_em_functions_sol import *
+from apic_em_functio
 
 post_url = 'https://sandboxapicem.cisco.com/api/v1/host'
 

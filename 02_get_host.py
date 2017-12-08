@@ -29,4 +29,4 @@ def get_hosts():
 
 
 hosts = get_hosts()
-print (tabulate(hosts,headers=['Number','Type','IP'],tablefmt='rst'))
+print(tabulate(hosts,headers=['Number','Type','IP'],tablefmt='rst'))
