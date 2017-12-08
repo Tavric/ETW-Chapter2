@@ -2,6 +2,7 @@ import requests
 from APIC_EM import get_ticket
 from tabulate import tabulate
 
+
 def get_hosts():
     url = "https://sandboxapicem.cisco.com/api/v1/host"
     ticket = get_ticket()
