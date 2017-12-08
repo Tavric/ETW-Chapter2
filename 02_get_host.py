@@ -1,6 +1,7 @@
 import requests
 from APIC_EM import get_ticket
 from tabulate import tabulate
+import sys
 
 
 def get_hosts():
@@ -13,8 +14,11 @@ def get_hosts():
             'X-Auth-Token': ticket,
             'Cache-Control': "no-cache"
             }
-
-        response = requests.request("GET", url, headers=headers, verify=False)
+        try:
+            response = requests.request("GET", url, headers=headers, verify=False)
+        except:
+            print("[*] Could not make request")
+            sys.exit()
 
         if response.status_code is 200:
             json_data = response.json()
