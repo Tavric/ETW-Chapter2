@@ -1,12 +1,12 @@
 import requests
 from APIC_EM import get_ticket
+from tabulate import tabulate
 
-
-def get_host_ips():
+def get_hosts():
     url = "https://sandboxapicem.cisco.com/api/v1/host"
     ticket = get_ticket()
 
-    host_ips = []
+    hosts = []
     if ticket:
         headers = {
             'X-Auth-Token': ticket,
@@ -17,13 +17,15 @@ def get_host_ips():
 
         if response.status_code is 200:
             json_data = response.json()
+            i = 0
 
             for device in json_data["response"]:
-                host_ips.append(device["hostIp"])
-            return host_ips
+                i += 1
+                hosts.append([i, device["hostType"], device["hostIp"]])
+            return hosts
         else:
             print("[*] Could not get host ips")
 
 
-host_ips = get_host_ips()
-print(host_ips)
+hosts = get_hosts()
+print (tabulate(hosts,headers=['Number','Type','IP'],tablefmt='rst'))
